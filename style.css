@@ -131,6 +131,7 @@ nav {
     background: linear-gradient(45deg, var(--text-dark), var(--primary-blue));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    line-height: 1.2;
 }
 
 .hero p {
@@ -485,6 +486,76 @@ footer p {
 
 .hidden {
     display: none;
+}
+
+/* --- RESPONSIVE BREAKPOINTS --- */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        gap: 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .dashboard-cards {
+        gap: 1.5rem;
+    }
+
+    .card {
+        padding: 2rem 1.5rem;
+    }
+
+    .checklist {
+        grid-template-columns: 1fr;
+    }
+
+    .about-content {
+        padding: 1.5rem;
+    }
+
+    .tech-stack {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .system-container {
+        gap: 2rem;
+    }
+
+    .form-card, .result-card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .nav-links {
+        gap: 0.8rem;
+    }
+
+    .flex-btn-group {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
 }
 
 /* Premium Polish Animations */
