@@ -10,6 +10,7 @@
     --glass: rgba(255, 255, 255, 0.7);
     --glass-border: rgba(255, 255, 255, 0.5);
     --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -283,6 +284,46 @@ input[type="range"]::-webkit-slider-thumb {
     text-align: center;
 }
 
+/* Cleanup Classes */
+.icon-primary {
+    color: var(--primary-blue);
+}
+
+.icon-secondary {
+    color: var(--secondary-pink);
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    font-family: inherit;
+    margin-top: 5px;
+    outline: none;
+    transition: var(--transition);
+}
+
+.search-input:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 4px rgba(174, 198, 207, 0.2);
+}
+
+.diagnosis-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 1rem 0;
+    color: var(--text-dark);
+}
+
+.disclaimer-note {
+    font-size: 0.8rem;
+    margin-top: 2rem;
+    font-style: italic;
+    color: #e74c3c;
+    opacity: 0.8;
+}
+
 /* Expert System Checklist */
 .checklist {
     display: grid;
@@ -444,4 +485,29 @@ footer p {
 
 .hidden {
     display: none;
+}
+
+/* Premium Polish Animations */
+.hero h1 {
+    animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.nav-link.active {
+    color: var(--secondary-pink);
+}
+
+/* Hover States for Cards */
+.card:hover i {
+    transform: scale(1.2) rotate(5deg);
+    transition: var(--transition);
+}
+
+.check-item:hover input {
+    transform: scale(1.2);
 }

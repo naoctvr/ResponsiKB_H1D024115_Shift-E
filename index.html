@@ -42,7 +42,6 @@
                 <button class="btn btn-primary">Mulai Analisis</button>
             </div>
             <div class="card" onclick="showSection('expert')">
-                <i class="fas fa-sparkles"></i>
                 <h3>Sistem Pakar Kulit</h3>
                 <p>Rekomendasi perawatan wajah berdasarkan masalah kulit yang dialami menggunakan metode rule-based.</p>
                 <button class="btn btn-primary">Mulai Konsultasi</button>
@@ -61,11 +60,11 @@
             <div class="form-card">
                 <form id="fuzzyForm">
                     <div class="form-group">
-                        <label><i class="fas fa-search" style="color: var(--primary-blue);"></i> Ketik apa yang Anda
+                        <label><i class="fas fa-search icon-primary"></i> Ketik apa yang Anda
                             makan:</label>
                         <input type="text" id="foodSearch" list="foodOptions"
                             placeholder="Cari: Nasi Goreng, Salad, Sate..." oninput="handleSearch()"
-                            style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 1px solid #ddd; font-family: inherit; margin-top: 5px; outline: none;">
+                            class="search-input">
                         <datalist id="foodOptions">
                             <option value="Ayam Goreng Manis">
                             <option value="Nasi Goreng Spesial">
@@ -185,7 +184,7 @@
             <div id="expertResult" class="result-card">
                 <div class="result-header">
                     <h2>Hasil Diagnosa Pakar</h2>
-                    <div id="expertDiagnosis" style="font-size: 1.5rem; font-weight: 700; margin: 1rem 0;">-</div>
+                    <div id="expertDiagnosis" class="diagnosis-text">-</div>
                 </div>
                 <div class="result-body">
                     <h4>Gejala Terdeteksi:</h4>
@@ -194,7 +193,7 @@
                     <p id="expertExplanation">-</p>
                     <h4>Rekomendasi Perawatan:</h4>
                     <p id="expertRecommendation">-</p>
-                    <p style="font-size: 0.8rem; margin-top: 2rem; font-style: italic; color: #e74c3c;">
+                    <p class="disclaimer-note">
                         *Catatan: Sistem ini hanya memberikan rekomendasi awal, bukan pengganti konsultasi dokter
                         spesialis kulit.
                     </p>
@@ -228,8 +227,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Responsi Kecerdasan Buatan - H1D024115 <i class="fas fa-heart"
-                style="color: var(--secondary-pink);"></i></p>
+        <p>&copy; 2026 Responsi Kecerdasan Buatan - H1D024115 <i class="fas fa-heart icon-secondary"></i></p>
     </footer>
 
     <script src="script.js"></script>

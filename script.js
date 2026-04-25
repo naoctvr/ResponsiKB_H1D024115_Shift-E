@@ -184,17 +184,20 @@ function analyzeFuzzy() {
         suggestion = "Sebaiknya cari alternatif menu yang lebih tinggi serat dan rendah lemak jenuh.";
     }
 
-    // Display Results
+    // Display Results with a tiny "thinking" delay
     const resultCard = document.getElementById('fuzzyResult');
-    resultCard.classList.add('active');
+    resultCard.classList.remove('active'); // Reset animation
 
-    document.getElementById('fuzzyScore').innerText = finalScore;
-    const catElement = document.getElementById('fuzzyCategory');
-    catElement.innerText = category;
-    catElement.className = `category-tag ${tagClass}`;
+    setTimeout(() => {
+        resultCard.classList.add('active');
+        document.getElementById('fuzzyScore').innerText = finalScore;
+        const catElement = document.getElementById('fuzzyCategory');
+        catElement.innerText = category;
+        catElement.className = `category-tag ${tagClass}`;
 
-    document.getElementById('fuzzyExplanation').innerText = reasons.length > 0 ? reasons.join(" ") : "Kandungan gizi berada pada level rata-rata standar.";
-    document.getElementById('fuzzySuggestion').innerText = suggestion;
+        document.getElementById('fuzzyExplanation').innerText = reasons.length > 0 ? reasons.join(" ") : "Kandungan gizi berada pada level rata-rata standar.";
+        document.getElementById('fuzzySuggestion').innerText = suggestion;
+    }, 300);
 }
 
 function resetFuzzy() {
@@ -253,21 +256,24 @@ function diagnoseSkin() {
         recommendation = "Pastikan melakukan double cleansing dan gunakan produk non-comedogenic.";
     }
 
-    // Display Results
+    // Display Results with delay
     const resultCard = document.getElementById('expertResult');
-    resultCard.classList.add('active');
+    resultCard.classList.remove('active');
 
-    document.getElementById('expertDiagnosis').innerText = diagnosis;
-    document.getElementById('expertExplanation').innerText = explanation;
-    document.getElementById('expertRecommendation').innerText = recommendation;
+    setTimeout(() => {
+        resultCard.classList.add('active');
+        document.getElementById('expertDiagnosis').innerText = diagnosis;
+        document.getElementById('expertExplanation').innerText = explanation;
+        document.getElementById('expertRecommendation').innerText = recommendation;
 
-    const symptomsList = document.getElementById('detectedSymptoms');
-    symptomsList.innerHTML = "";
-    selected.forEach(s => {
-        const li = document.createElement('li');
-        li.innerText = document.querySelector(`input[value="${s}"]`).parentElement.innerText;
-        symptomsList.appendChild(li);
-    });
+        const symptomsList = document.getElementById('detectedSymptoms');
+        symptomsList.innerHTML = "";
+        selected.forEach(s => {
+            const li = document.createElement('li');
+            li.innerText = document.querySelector(`input[value="${s}"]`).parentElement.innerText;
+            symptomsList.appendChild(li);
+        });
+    }, 400);
 }
 
 function resetExpert() {
