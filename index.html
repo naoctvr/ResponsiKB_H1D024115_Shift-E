@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsi KB | Sistem Fuzzy & Pakar</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <i class="fas fa-brain"></i>
+            <span>Responsi<span>KB</span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link active" data-section="home">Beranda</a></li>
+            <li><a href="#fuzzy" class="nav-link" data-section="fuzzy">Fuzzy Diet</a></li>
+            <li><a href="#expert" class="nav-link" data-section="expert">Sistem Pakar</a></li>
+            <li><a href="#about" class="nav-link" data-section="about">Tentang</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <div class="hero">
+            <h1>Hai ini Website Responsi KB</h1>
+            <p>Selamat datang! Website ini merupakan implementasi dari metode Fuzzy Logic untuk
+                penentuan menu diet dan Sistem Pakar untuk diagnosa perawatan wajah.</p>
+        </div>
+
+        <div class="dashboard-cards">
+            <div class="card" onclick="showSection('fuzzy')">
+                <h3>Sistem Fuzzy Diet</h3>
+                <p>Analisis tingkat kelayakan menu diet sehat berdasarkan kandungan kalori, protein, lemak, gula, dan
+                    serat.</p>
+                <button class="btn btn-primary">Mulai Analisis</button>
+            </div>
+            <div class="card" onclick="showSection('expert')">
+                <i class="fas fa-sparkles"></i>
+                <h3>Sistem Pakar Kulit</h3>
+                <p>Rekomendasi perawatan wajah berdasarkan masalah kulit yang dialami menggunakan metode rule-based.</p>
+                <button class="btn btn-primary">Mulai Konsultasi</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fuzzy System Section -->
+    <section id="fuzzy" class="section">
+        <div class="hero">
+            <h2>Fuzzy Penentuan Kelayakan Menu Diet</h2>
+            <p>Masukkan nilai kandungan gizi menu Anda untuk melihat tingkat kelayakannya.</p>
+        </div>
+
+        <div class="system-container">
+            <div class="form-card">
+                <form id="fuzzyForm">
+                    <div class="form-group">
+                        <label><i class="fas fa-search" style="color: var(--primary-blue);"></i> Ketik apa yang Anda
+                            makan:</label>
+                        <input type="text" id="foodSearch" list="foodOptions"
+                            placeholder="Cari: Nasi Goreng, Salad, Sate..." oninput="handleSearch()"
+                            style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 1px solid #ddd; font-family: inherit; margin-top: 5px; outline: none;">
+                        <datalist id="foodOptions">
+                            <option value="Ayam Goreng Manis">
+                            <option value="Nasi Goreng Spesial">
+                            <option value="Ikan Bakar Pedas">
+                            <option value="Sayur Rebus & Telur">
+                            <option value="Mie Goreng Keju">
+                            <option value="Roti Bakar Susu">
+                            <option value="Salad Buah & Sayur">
+                            <option value="Daging Sapi Santan">
+                        </datalist>
+                    </div>
+                    <div class="form-group">
+                        <label>Kalori (kcal)</label>
+                        <div class="slider-container">
+                            <input type="range" id="calories" min="0" max="3000" value="1500">
+                            <span class="range-value" id="val-calories">1500</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Protein (gram)</label>
+                        <div class="slider-container">
+                            <input type="range" id="protein" min="0" max="200" value="50">
+                            <span class="range-value" id="val-protein">50</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Lemak (gram)</label>
+                        <div class="slider-container">
+                            <input type="range" id="fat" min="0" max="150" value="40">
+                            <span class="range-value" id="val-fat">40</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Gula (gram)</label>
+                        <div class="slider-container">
+                            <input type="range" id="sugar" min="0" max="150" value="20">
+                            <span class="range-value" id="val-sugar">20</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Serat (gram)</label>
+                        <div class="slider-container">
+                            <input type="range" id="fiber" min="0" max="100" value="15">
+                            <span class="range-value" id="val-fiber">15</span>
+                        </div>
+                    </div>
+                    <div class="flex-btn-group">
+                        <button type="button" class="btn btn-primary" onclick="analyzeFuzzy()">Analisis Menu</button>
+                        <button type="reset" class="btn btn-outline" onclick="resetFuzzy()">Reset</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="fuzzyResult" class="result-card">
+                <div class="result-header">
+                    <h2>Hasil Analisis Fuzzy</h2>
+                    <div class="result-score" id="fuzzyScore">0</div>
+                    <span id="fuzzyCategory" class="category-tag">Memproses...</span>
+                </div>
+                <div class="result-body">
+                    <h4>Penjelasan:</h4>
+                    <p id="fuzzyExplanation">-</p>
+                    <h4>Saran:</h4>
+                    <p id="fuzzySuggestion">-</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expert System Section -->
+    <section id="expert" class="section">
+        <div class="hero">
+            <h2>Sistem Pakar Perawatan Wajah</h2>
+            <p>Pilih gejala yang Anda rasakan pada kulit wajah untuk mendapatkan rekomendasi perawatan.</p>
+        </div>
+
+        <div class="system-container">
+            <div class="form-card">
+                <div class="checklist" id="symptomsList">
+                    <label class="check-item">
+                        <input type="checkbox" value="oily"> Kulit Berminyak
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox" value="dry"> Kulit Kering
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox" value="acne"> Jerawat
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox" value="blackheads"> Komedo
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox" value="redness"> Kemerahan
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox" value="dull"> Kulit Kusam
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox" value="stinging"> Terasa Perih/Tertarik
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox" value="pores"> Pori-pori Besar
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox" value="peeling"> Kulit Mengelupas
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox" value="irritation"> Mudah Iritasi
+                    </label>
+                </div>
+                <div class="flex-btn-group">
+                    <button type="button" class="btn btn-primary" onclick="diagnoseSkin()">Diagnosa</button>
+                    <button type="button" class="btn btn-outline" onclick="resetExpert()">Reset</button>
+                </div>
+            </div>
+
+            <div id="expertResult" class="result-card">
+                <div class="result-header">
+                    <h2>Hasil Diagnosa Pakar</h2>
+                    <div id="expertDiagnosis" style="font-size: 1.5rem; font-weight: 700; margin: 1rem 0;">-</div>
+                </div>
+                <div class="result-body">
+                    <h4>Gejala Terdeteksi:</h4>
+                    <ul id="detectedSymptoms"></ul>
+                    <h4>Penjelasan:</h4>
+                    <p id="expertExplanation">-</p>
+                    <h4>Rekomendasi Perawatan:</h4>
+                    <p id="expertRecommendation">-</p>
+                    <p style="font-size: 0.8rem; margin-top: 2rem; font-style: italic; color: #e74c3c;">
+                        *Catatan: Sistem ini hanya memberikan rekomendasi awal, bukan pengganti konsultasi dokter
+                        spesialis kulit.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="about-content">
+            <h2>Tentang Sistem</h2>
+            <p>Website Responsi ini dibuat untuk memenuhi tugas Responsi Kecerdasan Buatan (KB). Sistem ini
+                menggabungkan
+                dua pilar utama dalam kecerdasan buatan:</p>
+            <br>
+            <p><strong>1. Fuzzy Logic:</strong> Menggunakan logika kabur untuk mengklasifikasikan data yang tidak
+                memiliki batasan tegas (seperti kadar gizi) menjadi kategori yang lebih manusiawi.</p>
+            <br>
+            <p><strong>2. Expert System:</strong> Menggunakan representasi pengetahuan berbasis aturan (Rule-based)
+                untuk meniru kemampuan pengambilan keputusan seorang pakar kecantikan/dermatologis.</p>
+
+            <div class="tech-stack">
+                <span class="tech-pill">HTML5</span>
+                <span class="tech-pill">Vanilla CSS</span>
+                <span class="tech-pill">Vanilla JavaScript</span>
+                <span class="tech-pill">No Framework</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Responsi Kecerdasan Buatan - H1D024115 <i class="fas fa-heart"
+                style="color: var(--secondary-pink);"></i></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
