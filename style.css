@@ -451,28 +451,7 @@ input[type="range"]::-webkit-slider-thumb {
     color: var(--primary-blue);
 }
 
-.tech-stack {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-}
 
-.tech-pill {
-    padding: 0.6rem 1.2rem;
-    background: #f0f4f8;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    white-space: nowrap;
-    border: 1px solid var(--glass-border);
-    transition: var(--transition);
-}
-
-.tech-pill:hover {
-    background: var(--white);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-soft);
-}
 
 /* Footer */
 footer {
