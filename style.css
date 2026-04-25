@@ -64,6 +64,8 @@ nav {
     display: flex;
     gap: 2rem;
     list-style: none;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .nav-links a {
@@ -489,63 +491,73 @@ footer p {
 }
 
 /* --- RESPONSIVE BREAKPOINTS --- */
-@media (max-width: 768px) {
+@media (max-width: 850px) {
     nav {
         flex-direction: column;
         padding: 1rem;
         gap: 1rem;
+        text-align: center;
     }
 
     .nav-links {
-        gap: 1.2rem;
-        font-size: 0.9rem;
+        gap: 1rem;
+        font-size: 0.85rem;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .section {
+        padding: 2rem 3%;
+    }
+}
+
+@media (max-width: 600px) {
+    .nav-links {
+        gap: 0.8rem;
+    }
+    
+    .nav-links a {
+        padding: 5px 0;
     }
 
     .hero h1 {
-        font-size: 2.2rem;
-    }
-
-    .hero p {
-        font-size: 1rem;
+        font-size: 1.8rem;
     }
 
     .dashboard-cards {
-        gap: 1.5rem;
-    }
-
-    .card {
-        padding: 2rem 1.5rem;
+        grid-template-columns: 1fr;
     }
 
     .checklist {
         grid-template-columns: 1fr;
     }
 
-    .about-content {
-        padding: 1.5rem;
-    }
-
-    .tech-stack {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
     .system-container {
-        gap: 2rem;
-    }
-
-    .form-card, .result-card {
-        padding: 1.5rem;
+        gap: 1.5rem;
     }
 }
 
 @media (max-width: 480px) {
-    .hero h1 {
-        font-size: 1.8rem;
+    .nav-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links li {
+        padding: 5px;
+        border-bottom: 1px solid var(--glass-border);
     }
     
-    .nav-links {
-        gap: 0.8rem;
+    .nav-links a::after {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 1.6rem;
     }
 
     .flex-btn-group {
@@ -554,7 +566,6 @@ footer p {
 
     .btn {
         width: 100%;
-        text-align: center;
     }
 }
 
